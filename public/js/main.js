@@ -111,10 +111,21 @@ const renderHeader = () => {
     actions.append(bell);
   }
 
+  const cta = document.createElement("a");
+  cta.className = "button button--small";
+  if (state.user) {
+    cta.textContent = "Open dashboard";
+    cta.href = state.user.role === "admin" || state.user.role === "editor" ? "/admin/index.html" : "/account/index.html";
+  } else {
+    cta.textContent = "Get started";
+    cta.href = "/auth/sign-up.html";
+  }
   const burger = document.createElement("button");
   burger.className = "burger";
   burger.setAttribute("aria-label", "Toggle navigation");
   burger.innerHTML = '<span aria-hidden="true">&#9776;</span>';
+
+  actions.append(cta);
 
   burger.addEventListener("click", () => {
     nav.classList.toggle("open");
@@ -130,16 +141,35 @@ const renderFooter = () => {
   if (!footer) return;
   footer.innerHTML = `
     <div class="inner">
-      <div>
+      <div class="footer-brand">
         <strong>A.production</strong>
-        <p class="muted">Stories crafted in code &mdash; digital products, services, and coaching designed to move ideas forward.</p>
+        <p>Crafting launch experiences, conversion systems, and growth operations for ambitious builders.</p>
       </div>
-      <div class="list-inline">
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/sitemap.xml">Sitemap</a>
+      <div>
+        <strong>Explore</strong>
+        <nav class="footer-links">
+          <a href="/products.html">Products</a>
+          <a href="/services.html">Services</a>
+          <a href="/coaching.html">Coaching</a>
+        </nav>
       </div>
+      <div>
+        <strong>Studio</strong>
+        <nav class="footer-links">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </nav>
+      </div>
+      <div class="footer-cta">
+        <strong>Ready to build?</strong>
+        <p>Start a request and weÃ¢â‚¬â„¢ll reply within 24 hours.</p>
+        <a class="button button--small" href="/auth/sign-up.html">Create account</a>
+      </div>
+    </div>
+    <div class="inner" style="margin-top:1.5rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
       <small>&copy; ${new Date().getFullYear()} A.production. All rights reserved.</small>
+      <small>Stories crafted in code (of sorts).</small>
     </div>
   `;
 };

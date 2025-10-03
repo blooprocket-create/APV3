@@ -11,6 +11,10 @@
     { "source": "/api/requests/:id/status", "destination": "/api/request-:id-status" },
     { "source": "/api/admin/users/:id", "destination": "/api/admin-user-:id" },
     { "source": "/api/admin/products/:id", "destination": "/api/admin-product-:id" },
-    { "source": "/api/admin/services/:id", "destination": "/api/admin-service-:id" }
+    { "source": "/api/admin/services/:id", "destination": "/api/admin-service-:id" },
+    { "source": "/api/auth/register", "destination": "/api/auth-register" },
+    { "source": "/api/auth/login", "destination": "/api/auth-login" },
+    { "source": "/api/auth/logout", "destination": "/api/auth-logout" },
+    { "source": "/api/auth/me", "destination": "/api/auth-me" }
   ]
 }

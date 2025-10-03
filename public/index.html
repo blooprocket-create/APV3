@@ -3,70 +3,90 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>A.production â€” Templates, Services & Coaching for Ambitious Builders</title>
-    <meta name="description" content="A.production helps founders launch faster with polished templates, high-converting services, and 1:1 growth coaching." />
+    <title>A.production — Premium Digital Products, Services & Coaching</title>
+    <meta name="description" content="A.production helps founders launch faster with polished templates, conversion-driven services, and 1:1 coaching." />
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="preload" href="/assets/logo.svg" as="image" />
-    <meta property="og:title" content="A.production â€” Templates, Services & Coaching" />
-    <meta property="og:description" content="Launch faster with premium digital products, bespoke services, and 1:1 coaching." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:title" content="A.production — Build the next chapter" />
+    <meta property="og:description" content="Launch-ready assets, hands-on services, and strategic coaching for modern founders." />
   </head>
   <body data-page="home">
     <header data-site-header class="site-header"></header>
     <main>
       <section class="hero">
-        <div class="reveal hero-copy">
-          <span class="badge">Launch-ready assets</span>
-          <h1>Scale your vision with premium templates, conversion services, and founder coaching.</h1>
-          <p>
-            A.production blends design systems, persuasive copy, and guided coaching to help you ship faster and grow with confidence. Discover proven assets and a dedicated team ready to co-create with you.
+        <div class="hero__content reveal">
+          <span class="hero__badge">Launch-ready assets</span>
+          <h1 class="hero__title">Scale your vision with polished products, tailored services, and coaching that ships.</h1>
+          <p class="hero__text">
+            A.production is the partner for founders who want beautiful execution without the guesswork. Tap into conversion-first templates, full-service engagements, and senior operators obsessed with outcomes.
           </p>
-          <div class="hero-actions">
+          <div class="hero__actions">
             <a class="button" href="/products.html">Browse digital products</a>
-            <a class="button secondary" href="/services.html">Explore services</a>
+            <a class="button button--ghost" href="/services.html">Explore services</a>
+          </div>
+          <ul class="hero__stats">
+            <li>
+              <span class="hero__stat-number">45+</span>
+              <span class="hero__stat-label">Launch systems shipped</span>
+            </li>
+            <li>
+              <span class="hero__stat-number">18</span>
+              <span class="hero__stat-label">Expert partners</span>
+            </li>
+            <li>
+              <span class="hero__stat-number">24h</span>
+              <span class="hero__stat-label">Average initial response</span>
+            </li>
+          </ul>
+        </div>
+        <div class="hero__media reveal">
+          <div class="hero__media-frame">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1100&q=80" alt="Founder team collaborating" />
           </div>
         </div>
-                <div class="reveal hero-media">
-          <span class="hero-orb"></span>
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Creative studio" style="border-radius: var(--radius); box-shadow: var(--shadow-soft);" />
-                </div>
       </section>
 
-      <section class="reveal">
+      <section class="section">
+        <div class="section-header">
+          <h2>What we deliver</h2>
+          <a class="section-link" href="#">Meet the studio</a>
+        </div>
+        <div class="cards-grid">
+          <article class="card reveal">
+            <h3>Conversion-first strategy</h3>
+            <p>
+              Every engagement begins with positioning, messaging, and performance benchmarks. We identify the fastest path to impact, then execute relentlessly.
+            </p>
+          </article>
+          <article class="card reveal">
+            <h3>Design systems that scale</h3>
+            <p>
+              Modular UI kits, polished templates, and component libraries built to evolve with your product—ready for marketing, sales, and product teams alike.
+            </p>
+          </article>
+          <article class="card reveal">
+            <h3>Hands-on delivery & coaching</h3>
+            <p>
+              Dedicated operators run sprints with you: service requests, quote cycles, 1:1 coaching, and weekly experiments designed to move the metric that matters.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
         <div class="section-header">
           <h2>Featured templates</h2>
-          <a class="secondary" href="/products.html">View catalog</a>
+          <a class="section-link" href="/products.html">View catalog</a>
         </div>
-        <div class="grid" data-products-grid></div>
+        <div class="cards-grid" data-products-grid></div>
       </section>
 
-      <section class="reveal">
+      <section class="section">
         <div class="section-header">
           <h2>Signature services</h2>
-          <a class="secondary" href="/services.html">All services</a>
+          <a class="section-link" href="/services.html">All services</a>
         </div>
-        <div class="grid" data-services-grid>        </div>
-      </section>
-
-      <section class="reveal">
-        <div class="section-header">
-          <h2>Why founders choose A.production</h2>
-        </div>
-        <div class="grid">
-          <article class="card">
-            <h3>Conversion obsessed</h3>
-            <p class="muted">Every template and engagement is informed by tested frameworks, data-backed copy, and optimized user flows.</p>
-          </article>
-          <article class="card">
-            <h3>Service + system</h3>
-            <p class="muted">Pair ready-to-deploy assets with expert operators who can step in and deliver for launch-critical moments.</p>
-          </article>
-          <article class="card">
-            <h3>Founder-first coaching</h3>
-            <p class="muted">Weekly accountability, strategic sprints, and revenue experiments to keep you focused on the metrics that matter.</p>
-          </article>
-                </div>
+        <div class="cards-grid" data-services-grid></div>
       </section>
     </main>
     <footer data-site-footer class="footer"></footer>
@@ -74,4 +94,3 @@
     <script type="module" src="/js/catalog.js"></script>
   </body>
 </html>
-

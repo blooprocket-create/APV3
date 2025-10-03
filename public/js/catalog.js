@@ -20,13 +20,13 @@ const renderProducts = async () => {
               ${(product.tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("")}
             </div>
             <div class="price">${formatPrice(product.priceCents)}</div>
-            <a class="button" href="/product.html?slug=${product.slug}">View details</a>
+            <a class="button button--ghost card__cta" href="/product.html?slug=${encodeURIComponent(product.slug)}">View details</a>
           </article>
         `
       )
       .join("");
   } catch (error) {
-    grid.innerHTML = `<div class="empty-state">${error.message || "Could not load products."}</div>`;
+    grid.innerHTML = `<div class="card">${error.message || "Could not load products."}</div>`;
   }
 };
 
@@ -45,13 +45,13 @@ const renderServices = async () => {
               ${(service.tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("")}
             </div>
             <div class="price">Starting at ${formatPrice(service.basePriceCents)}</div>
-            <a class="button" href="/service.html?slug=${service.slug}">Explore service</a>
+            <a class="button button--ghost card__cta" href="/service.html?slug=${encodeURIComponent(service.slug)}">Explore service</a>
           </article>
         `
       )
       .join("");
   } catch (error) {
-    grid.innerHTML = `<div class="empty-state">${error.message || "Could not load services."}</div>`;
+    grid.innerHTML = `<div class="card">${error.message || "Could not load services."}</div>`;
   }
 };
 
@@ -94,26 +94,25 @@ const renderProductDetail = async () => {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
   if (!slug) {
-    container.innerHTML = `<div class="empty-state">Missing product slug.</div>`;
+    container.innerHTML = `<div class="card">Missing product slug.</div>`;
     return;
   }
   try {
-    const safeSlug = encodeURIComponent(slug.trim());
-    const data = await apiClient.get(`/products/${safeSlug}`);
+    const data = await apiClient.get(`/product-${encodeURIComponent(slug)}`);
     const product = data.product;
     container.innerHTML = `
-      <section class="card">
+      <section class="card article-card">
         <img class="cover" src="${product.coverImageUrl ?? "https://images.unsplash.com/photo-1454165205744-3b78555e5572"}" alt="${product.title}" />
         <h1>${product.title}</h1>
         <p>${product.description}</p>
-        <div class="chip-group">${(product.tags || []).map((tag) => `<span class="chip">${tag}</span>`).join("")}</div>
-        <div class="price">${formatPrice(product.priceCents)}</div>
+        <div class="tags">${(product.tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+        <div class="price" style="margin:1rem 0;">${formatPrice(product.priceCents)}</div>
         <button type="button" data-buy-product>Buy (Mock)</button>
       </section>
     `;
     container.querySelector("[data-buy-product]").addEventListener("click", () => purchaseProduct(product.id));
   } catch (error) {
-    container.innerHTML = `<div class="empty-state">${error.message || "Product not found."}</div>`;
+    container.innerHTML = `<div class="card">${error.message || "Product not found."}</div>`;
   }
 };
 
@@ -123,19 +122,18 @@ const renderServiceDetail = async () => {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug") || container.dataset.slug;
   if (!slug) {
-    container.innerHTML = `<div class="empty-state">Missing service slug.</div>`;
+    container.innerHTML = `<div class="card">Missing service slug.</div>`;
     return;
   }
   try {
-    const safeSlug = encodeURIComponent(slug.trim());
-    const data = await apiClient.get(`/services/${safeSlug}`);
+    const data = await apiClient.get(`/service-${encodeURIComponent(slug)}`);
     const service = data.service;
     container.innerHTML = `
-      <section class="card">
+      <section class="card article-card">
         <h1>${service.title}</h1>
         <p>${service.description}</p>
-        <div class="chip-group">${(service.tags || []).map((tag) => `<span class="chip">${tag}</span>`).join("")}</div>
-        <div class="price">Starting at ${formatPrice(service.basePriceCents)}</div>
+        <div class="tags">${(service.tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+        <div class="price" style="margin:1rem 0;">Starting at ${formatPrice(service.basePriceCents)}</div>
         <button type="button" data-request-service>Request service</button>
       </section>
     `;
@@ -157,8 +155,8 @@ const renderServiceDetail = async () => {
             <textarea name="details" required></textarea>
           </label>
           <div style="display:flex; gap:1rem; justify-content:flex-end;">
-            <button type="button" class="secondary" data-close-modal>Cancel</button>
-            <button type="submit">Submit request</button>
+            <button type="button" class="button button--ghost" data-close-modal>Cancel</button>
+            <button type="submit" class="button">Submit request</button>
           </div>
         </form>
       `);
@@ -177,7 +175,7 @@ const renderServiceDetail = async () => {
       document.querySelector("[data-close-modal]").addEventListener("click", () => closeModal());
     });
   } catch (error) {
-    container.innerHTML = `<div class="empty-state">${error.message || "Service not found."}</div>`;
+    container.innerHTML = `<div class="card">${error.message || "Service not found."}</div>`;
   }
 };
 
