@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler, readJsonBody, requireMethod } from "../lib/utils";
-import { broadcastNotificationSchema } from "../lib/validators";
-import { query } from "../lib/db";
-import { requireAuth, ensureRole } from "../lib/auth";
+import { asyncHandler, readJsonBody, requireMethod } from "../lib/utils.js";
+import { broadcastNotificationSchema } from "../lib/validators.js";
+import { query } from "../lib/db.js";
+import { requireAuth, ensureRole } from "../lib/auth.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   if (!requireMethod(req, res, ["POST"])) return;
@@ -43,3 +43,4 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
   res.status(200).json({ inserted: targets.rowCount });
 });
+

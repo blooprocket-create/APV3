@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler, readJsonBody } from "../lib/utils";
-import { productInputSchema } from "../lib/validators";
-import { query } from "../lib/db";
-import { requireAuth, ensureAnyRole } from "../lib/auth";
+import { asyncHandler, readJsonBody } from "../lib/utils.js";
+import { productInputSchema } from "../lib/validators.js";
+import { query } from "../lib/db.js";
+import { requireAuth, ensureAnyRole } from "../lib/auth.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   const user = await requireAuth(req);
@@ -58,3 +58,4 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
   res.status(405).json({ error: "Method Not Allowed" });
 });
+

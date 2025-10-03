@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler, rateLimit, getUserAgentKey, readJsonBody, requireMethod } from "../lib/utils";
-import { registerSchema } from "../lib/validators";
-import { hashPassword, signToken, setAuthCookie } from "../lib/auth";
-import { query } from "../lib/db";
+import { asyncHandler, rateLimit, getUserAgentKey, readJsonBody, requireMethod } from "../lib/utils.js";
+import { registerSchema } from "../lib/validators.js";
+import { hashPassword, signToken, setAuthCookie } from "../lib/auth.js";
+import { query } from "../lib/db.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   if (!requireMethod(req, res, ["POST"])) return;
@@ -54,3 +54,4 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     role: user.role
   });
 });
+

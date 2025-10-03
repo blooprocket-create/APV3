@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler, requireMethod } from "../lib/utils";
-import { query } from "../lib/db";
-import { requireAuth } from "../lib/auth";
+import { asyncHandler, requireMethod } from "../lib/utils.js";
+import { query } from "../lib/db.js";
+import { requireAuth } from "../lib/auth.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   if (!requireMethod(req, res, ["POST"])) return;

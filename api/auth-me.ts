@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler } from "../lib/utils";
-import { getSessionUser } from "../lib/auth";
+import { asyncHandler } from "../lib/utils.js";
+import { getSessionUser } from "../lib/auth.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   const user = await getSessionUser(req);
@@ -10,3 +10,4 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   }
   res.status(200).json({ user });
 });
+

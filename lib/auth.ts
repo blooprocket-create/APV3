@@ -1,9 +1,9 @@
-import "./env";
+import "./env.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import cookie from "cookie";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { query } from "./db";
+import { query } from "./db.js";
 
 const TOKEN_COOKIE = "session";
 const TOKEN_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
@@ -127,3 +127,4 @@ export const respondUnauthorized = (res: VercelResponse) => {
 export const respondForbidden = (res: VercelResponse) => {
   res.status(403).json({ error: "Forbidden" });
 };
+

@@ -1,4 +1,4 @@
-import "./env";
+import "./env.js";
 import { Pool, PoolClient, QueryResult } from "pg";
 
 const connectionString = process.env.DATABASE_URL;

@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler, readJsonBody } from "../lib/utils";
-import { adminUserUpdateSchema } from "../lib/validators";
-import { query } from "../lib/db";
-import { requireAuth, ensureRole, hashPassword } from "../lib/auth";
+import { asyncHandler, readJsonBody } from "../lib/utils.js";
+import { adminUserUpdateSchema } from "../lib/validators.js";
+import { query } from "../lib/db.js";
+import { requireAuth, ensureRole, hashPassword } from "../lib/auth.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   const user = await requireAuth(req);

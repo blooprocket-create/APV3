@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler, readJsonBody, requireMethod } from "../lib/utils";
-import { messageCreateSchema } from "../lib/validators";
-import { query } from "../lib/db";
-import { requireAuth } from "../lib/auth";
+import { asyncHandler, readJsonBody, requireMethod } from "../lib/utils.js";
+import { messageCreateSchema } from "../lib/validators.js";
+import { query } from "../lib/db.js";
+import { requireAuth } from "../lib/auth.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   if (!requireMethod(req, res, ["POST"])) return;

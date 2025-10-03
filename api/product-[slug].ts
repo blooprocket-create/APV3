@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler } from "../lib/utils";
-import { query } from "../lib/db";
+import { asyncHandler } from "../lib/utils.js";
+import { query } from "../lib/db.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   const slug = req.query.slug;

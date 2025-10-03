@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { asyncHandler, readJsonBody } from "../lib/utils";
-import { orderCreateSchema } from "../lib/validators";
-import { query, transaction } from "../lib/db";
-import { requireAuth } from "../lib/auth";
+import { asyncHandler, readJsonBody } from "../lib/utils.js";
+import { orderCreateSchema } from "../lib/validators.js";
+import { query, transaction } from "../lib/db.js";
+import { requireAuth } from "../lib/auth.js";
 
 export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   if (req.method === "GET") {
@@ -156,3 +156,4 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
   res.status(405).json({ error: "Method Not Allowed" });
 });
+
