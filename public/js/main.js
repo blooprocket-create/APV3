@@ -57,7 +57,7 @@ const renderHeader = () => {
   brandLink.href = "/index.html";
   brandLink.className = "brand";
   brandLink.innerHTML = 
-    <img class="brand-logo" src="/assets/logo.svg" alt="A.production monogram" width="48" height="48" />
+    <img class="brand-logo" src="/assets/logo.svg" alt="A.production monogram" width="56" height="56" />
     <div class="brand-text">
       <span class="brand-name">A.production</span>
       <span class="brand-tagline">(of sorts)</span>

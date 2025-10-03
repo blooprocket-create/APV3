@@ -20,9 +20,9 @@ if (!globalWithPool.__pgPool) {
 
 export const query = <T extends QueryResultRow = QueryResultRow>(
   text: string,
-  params: readonly unknown[] = []
+  params: unknown[] = []
 ): Promise<QueryResult<T>> => {
-  return pool.query<T>(text, params);
+  return pool.query<T>(text, params as any[]);
 };
 
 export const transaction = async <T>(fn: (client: PoolClient) => Promise<T>): Promise<T> => {

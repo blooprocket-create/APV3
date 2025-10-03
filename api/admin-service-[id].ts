@@ -27,7 +27,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     const data = parsed.data;
 
     if (data.slug) {
-      const exists = await query(`SELECT id FROM services WHERE slug = $1 AND id <> $2`, [data.slug, id]);
+      const exists = await query<{ id: string }>(`SELECT id FROM services WHERE slug = $1 AND id <> $2`, [data.slug, id]);
       if ((exists.rowCount ?? 0) > 0) {
         res.status(409).json({ error: "Slug already exists" });
         return;

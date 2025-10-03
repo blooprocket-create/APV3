@@ -29,8 +29,8 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     const { email, password, name: newName, role } = parsed.data;
     const normalizedEmail = email.toLowerCase();
 
-    const existing = await query("SELECT id FROM users WHERE email = $1", [normalizedEmail]);
-    if (existing.rowCount > 0) {
+    const existing = await query<{ id: string }>("SELECT id FROM users WHERE email = $1", [normalizedEmail]);
+    if ((existing.rowCount ?? 0) > 0) {
       res.status(409).json({ error: "Email already exists" });
       return;
     }
