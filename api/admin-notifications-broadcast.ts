@@ -22,7 +22,8 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     ? await query<{ id: string }>(`SELECT id FROM users WHERE role = $1`, [role])
     : await query<{ id: string }>(`SELECT id FROM users`, []);
 
-  if (targets.rowCount === 0) {
+  const targetCount = targets.rowCount ?? targets.rows.length;
+  if (targetCount === 0) {
     res.status(200).json({ inserted: 0 });
     return;
   }
@@ -41,6 +42,5 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     values
   );
 
-  res.status(200).json({ inserted: targets.rowCount });
+  res.status(200).json({ inserted: targetCount });
 });
-

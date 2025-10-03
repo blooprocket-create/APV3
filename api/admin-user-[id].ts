@@ -27,7 +27,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     if (updates.email) {
       const normalized = updates.email.toLowerCase();
       const exists = await query(`SELECT id FROM users WHERE email = $1 AND id <> $2`, [normalized, id]);
-      if (exists.rowCount > 0) {
+      if ((exists.rowCount ?? 0) > 0) {
         res.status(409).json({ error: "Email already in use" });
         return;
       }
@@ -61,7 +61,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
     values.push(id);
 
-    const updated = await query(
+    const updated = await query<{ id: string; email: string; name: string; role: string; createdAt: string }>(
       `UPDATE users SET ${fields.join(", ")}
        WHERE id = $${fields.length + 1}
        RETURNING id, email, name, role, created_at AS "createdAt"`,

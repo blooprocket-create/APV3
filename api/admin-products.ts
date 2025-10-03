@@ -9,7 +9,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   ensureAnyRole(user, ["admin", "editor"]);
 
   if (req.method === "GET") {
-    const result = await query(
+    const result = await query<{ id: string; slug: string; title: string; description: string; priceCents: number; isActive: boolean; sku: string | null; tags: string[] | null; coverImageUrl: string | null; digitalFileUrl: string | null; createdAt: string; updatedAt: string; }>(
       `SELECT id, slug, title, description, price_cents AS "priceCents", is_active AS "isActive",
               sku, tags, cover_image_url AS "coverImageUrl", digital_file_url AS "digitalFileUrl",
               created_at AS "createdAt", updated_at AS "updatedAt"
@@ -30,12 +30,12 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
     const data = parsed.data;
     const existing = await query(`SELECT id FROM products WHERE slug = $1`, [data.slug]);
-    if (existing.rowCount > 0) {
+    if ((existing.rowCount ?? 0) > 0) {
       res.status(409).json({ error: "Slug already exists" });
       return;
     }
 
-    const inserted = await query(
+    const inserted = await query<{ id: string; slug: string; title: string }>(
       `INSERT INTO products (slug, title, description, price_cents, is_active, sku, tags, cover_image_url, digital_file_url)
        VALUES ($1, $2, $3, $4, COALESCE($5, TRUE), $6, COALESCE($7::text[], '{}'), $8, $9)
        RETURNING id, slug, title`,

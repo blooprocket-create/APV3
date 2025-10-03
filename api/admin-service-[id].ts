@@ -28,7 +28,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
     if (data.slug) {
       const exists = await query(`SELECT id FROM services WHERE slug = $1 AND id <> $2`, [data.slug, id]);
-      if (exists.rowCount > 0) {
+      if ((exists.rowCount ?? 0) > 0) {
         res.status(409).json({ error: "Slug already exists" });
         return;
       }
@@ -70,7 +70,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     const setClause = `${fields.join(", ")}, updated_at = NOW()`;
     values.push(id);
 
-    const updated = await query(
+    const updated = await query<{ id: string; slug: string; title: string; description: string; basePriceCents: number; isActive: boolean; tags: string[] | null; createdAt: string; updatedAt: string; }>(
       `UPDATE services SET ${setClause}
        WHERE id = $${values.length}
        RETURNING id, slug, title, description, base_price_cents AS "basePriceCents",

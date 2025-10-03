@@ -28,7 +28,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
       return;
     }
 
-    const inserted = await query(
+    const inserted = await query<{ id: string; status: string; created_at: string }>(
       `INSERT INTO service_requests (user_id, service_id, status, brief)
        VALUES ($1, $2, 'open', $3::jsonb)
        RETURNING id, status, created_at`,

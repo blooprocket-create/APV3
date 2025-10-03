@@ -9,7 +9,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   ensureAnyRole(user, ["admin", "editor"]);
 
   if (req.method === "GET") {
-    const services = await query(
+    const services = await query<{ id: string; slug: string; title: string; description: string; basePriceCents: number; isActive: boolean; tags: string[] | null; createdAt: string; updatedAt: string; }>(
       `SELECT id, slug, title, description, base_price_cents AS "basePriceCents",
               is_active AS "isActive", tags, created_at AS "createdAt", updated_at AS "updatedAt"
        FROM services
@@ -29,12 +29,12 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
     const data = parsed.data;
     const existing = await query(`SELECT id FROM services WHERE slug = $1`, [data.slug]);
-    if (existing.rowCount > 0) {
+    if ((existing.rowCount ?? 0) > 0) {
       res.status(409).json({ error: "Slug already exists" });
       return;
     }
 
-    const inserted = await query(
+    const inserted = await query<{ id: string; slug: string; title: string }>(
       `INSERT INTO services (slug, title, description, base_price_cents, is_active, tags)
        VALUES ($1, $2, $3, $4, COALESCE($5, TRUE), COALESCE($6::text[], '{}'))
        RETURNING id, slug, title`,

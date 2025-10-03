@@ -36,7 +36,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
   const { amountCents, notes } = parsed.data;
 
-  const upserted = await query(
+  const upserted = await query<{ id: string; status: string; created_at: string }>(
     `INSERT INTO quotes (service_request_id, amount_cents, notes, status)
      VALUES ($1, $2, $3, 'sent')
      ON CONFLICT (service_request_id)

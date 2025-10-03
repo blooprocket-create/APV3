@@ -9,7 +9,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
   ensureRole(user, "admin");
 
   if (req.method === "GET") {
-    const users = await query(
+    const users = await query<{ id: string; email: string; name: string; role: string; createdAt: string }>(
       `SELECT id, email, name, role, created_at AS "createdAt"
        FROM users
        ORDER BY created_at DESC`
@@ -36,7 +36,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     }
 
     const passwordHash = await hashPassword(password);
-    const inserted = await query(
+    const inserted = await query<{ id: string; email: string; name: string; role: string; createdAt: string }>(
       `INSERT INTO users (email, password_hash, name, role)
        VALUES ($1, $2, $3, $4)
        RETURNING id, email, name, role, created_at AS "createdAt"`,

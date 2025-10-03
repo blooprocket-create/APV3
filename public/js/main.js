@@ -56,19 +56,18 @@ const renderHeader = () => {
   const brandLink = document.createElement("a");
   brandLink.href = "/index.html";
   brandLink.className = "brand";
-  brandLink.innerHTML = `
+  brandLink.innerHTML = 
     <img class="brand-logo" src="/assets/logo.svg" alt="A.production monogram" width="48" height="48" />
     <div class="brand-text">
       <span class="brand-name">A.production</span>
       <span class="brand-tagline">(of sorts)</span>
     </div>
-  `;
+  ;
 
   const nav = document.createElement("nav");
   nav.className = "nav-links";
 
   createNavLinks(routes, nav);
-
 
   if (state.user) {
     const divider = document.createElement("span");

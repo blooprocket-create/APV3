@@ -33,7 +33,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
     return;
   }
 
-  const deliverable = await query(
+  const deliverable = await query<{ id: string; created_at: string }>(
     `INSERT INTO deliverables (service_request_id, title, description, file_url)
      VALUES ($1, $2, $3, $4)
      RETURNING id, created_at`,

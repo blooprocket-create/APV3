@@ -40,7 +40,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
   const { body: messageBody, attachments = [] } = parsed.data;
 
-  const inserted = await query(
+  const inserted = await query<{ id: string; created_at: string }>(
     `INSERT INTO messages (service_request_id, sender_user_id, body, attachments)
      VALUES ($1, $2, $3, $4::text[])
      RETURNING id, created_at`,

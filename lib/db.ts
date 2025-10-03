@@ -1,5 +1,5 @@
 import "./env.js";
-import { Pool, PoolClient, QueryResult } from "pg";
+import { Pool, PoolClient, QueryResult, QueryResultRow } from "pg";
 
 const connectionString = process.env.DATABASE_URL;
 if (!connectionString) {
@@ -18,7 +18,10 @@ if (!globalWithPool.__pgPool) {
   globalWithPool.__pgPool = pool;
 }
 
-export const query = <T = unknown>(text: string, params: unknown[] = []): Promise<QueryResult<T>> => {
+export const query = <T extends QueryResultRow = QueryResultRow>(
+  text: string,
+  params: readonly unknown[] = []
+): Promise<QueryResult<T>> => {
   return pool.query<T>(text, params);
 };
 
