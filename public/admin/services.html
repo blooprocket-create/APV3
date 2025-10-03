@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin • Services — Studio Nova</title>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body data-page="admin-services">
+    <header data-site-header class="site-header"></header>
+    <main>
+      <section class="reveal">
+        <h1>Service catalog</h1>
+        <p class="muted">Keep your service line-up current with active prices, descriptions, and tags for easy filters.</p>
+      </section>
+      <section class="card reveal">
+        <h2>Create or update</h2>
+        <form data-admin-service-form>
+          <label>
+            <span>Title</span>
+            <input type="text" name="title" required />
+          </label>
+          <label>
+            <span>Slug</span>
+            <input type="text" name="slug" required />
+          </label>
+          <label>
+            <span>Description</span>
+            <textarea name="description" required></textarea>
+          </label>
+          <label>
+            <span>Base price (cents)</span>
+            <input type="number" name="basePriceCents" min="0" required />
+          </label>
+          <label>
+            <span>Active</span>
+            <input type="checkbox" name="isActive" checked />
+          </label>
+          <label>
+            <span>Tags (comma separated)</span>
+            <input type="text" name="tags" />
+          </label>
+          <div style="display:flex; gap:1rem;">
+            <button type="submit">Save service</button>
+            <button type="button" class="secondary" data-admin-service-reset>Reset</button>
+          </div>
+        </form>
+      </section>
+      <section class="reveal">
+        <table class="table">
+          <thead>
+            <tr><th>Title</th><th>Slug</th><th>Status</th><th>Base price</th><th></th></tr>
+          </thead>
+          <tbody data-admin-services-table></tbody>
+        </table>
+      </section>
+    </main>
+    <footer data-site-footer class="footer"></footer>
+    <script type="module" src="/js/main.js"></script>
+    <script type="module" src="/js/admin/services.js"></script>
+  </body>
+</html>
