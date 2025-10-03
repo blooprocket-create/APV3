@@ -1,80 +1,74 @@
-<svg class="svg-logo" width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <title>A.production — animated wordmark</title>
-  <desc>Animated logo for A.production with a luminous A monogram and the tagline “(of sorts)”.</desc>
+<svg class="svg-logo" width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>A.production monogram</title>
+  <desc>Animated monogram logo for A.production.</desc>
   <defs>
-    <linearGradient id="grad-stroke" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7C8BFF">
-        <animate attributeName="offset" values="0;0.4;0" dur="6s" repeatCount="indefinite" />
+    <radialGradient id="bg-glow" cx="0.5" cy="0.5" r="0.65">
+      <stop offset="0%" stop-color="#6B88FF" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#3646A2" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="stroke-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6">
+        <animate attributeName="offset" values="0;0.35;0" dur="5.6s" repeatCount="indefinite" />
       </stop>
-      <stop offset="100%" stop-color="#35F2FF" />
+      <stop offset="100%" stop-color="#38BDF8" />
     </linearGradient>
-    <linearGradient id="grad-text" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#0F172A" />
-      <stop offset="100%" stop-color="#475569" />
+    <linearGradient id="spark-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F8FAFC" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.2" />
     </linearGradient>
     <style>
+      .halo {
+        fill: url(#bg-glow);
+        opacity: 0;
+        animation: appear 1.2s ease forwards;
+      }
       .outline {
-        stroke: url(#grad-stroke);
-        stroke-width: 6;
+        stroke: url(#stroke-grad);
+        stroke-width: 8;
         stroke-linecap: round;
         stroke-linejoin: round;
         fill: none;
-        stroke-dasharray: 230;
-        stroke-dashoffset: 230;
-        animation: draw 1.6s ease forwards;
+        stroke-dasharray: 240;
+        stroke-dashoffset: 240;
+        animation: draw 1.4s ease forwards;
+        filter: drop-shadow(0 6px 18px rgba(59,130,246,0.35));
       }
       .crossbar {
-        stroke: url(#grad-stroke);
-        stroke-width: 6;
+        stroke: url(#stroke-grad);
+        stroke-width: 8;
         stroke-linecap: round;
-        stroke-dasharray: 90;
-        stroke-dashoffset: 90;
-        animation: draw 1s ease forwards 0.4s;
+        fill: none;
+        stroke-dasharray: 120;
+        stroke-dashoffset: 120;
+        animation: draw 1s ease forwards 0.35s;
       }
-      .pulse {
-        fill: url(#grad-stroke);
+      .spark {
+        fill: none;
+        stroke: url(#spark-grad);
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-dasharray: 32;
+        stroke-dashoffset: 32;
         opacity: 0;
-        transform-origin: center;
-        animation: pulse 3.6s ease-in-out infinite 1.2s;
-      }
-      .wordmark {
-        font-family: "Inter", "Segoe UI", Arial, sans-serif;
-        font-weight: 600;
-        font-size: 28px;
-        fill: url(#grad-text);
-        letter-spacing: 0.04em;
-        opacity: 0;
-        animation: fadeIn 1s ease forwards 0.9s;
-      }
-      .tagline {
-        font-family: "Inter", "Segoe UI", Arial, sans-serif;
-        font-size: 14px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        fill: #64748b;
-        opacity: 0;
-        animation: fadeIn 1s ease forwards 1.4s;
+        animation: spark 2.8s ease-in-out infinite 1.1s;
       }
       @keyframes draw {
         to { stroke-dashoffset: 0; }
       }
-      @keyframes fadeIn {
+      @keyframes appear {
         to { opacity: 1; }
       }
-      @keyframes pulse {
-        0%, 100% { opacity: 0; transform: scale(0.6); }
-        40% { opacity: 0.8; transform: scale(1); }
-        70% { opacity: 0; transform: scale(1.4); }
+      @keyframes spark {
+        0%, 100% { opacity: 0; stroke-dashoffset: 32; }
+        40% { opacity: 1; stroke-dashoffset: 0; }
+        60% { opacity: 0; stroke-dashoffset: -32; }
       }
     </style>
   </defs>
 
-  <g transform="translate(10 6)">
-    <path class="outline" d="M10 64 L44 4 L78 64" />
-    <path class="crossbar" d="M26 42 H62" />
-    <circle class="pulse" cx="44" cy="8" r="7" />
-  </g>
-
-  <text class="wordmark" x="100" y="40">A.production</text>
-  <text class="tagline" x="100" y="58">(of sorts)</text>
+  <circle class="halo" cx="48" cy="48" r="44" />
+  <path class="outline" d="M18 78 L48 18 L78 78" />
+  <path class="crossbar" d="M30 54 H66" />
+  <path class="spark" d="M54 22 Q48 16 42 22" />
 </svg>
