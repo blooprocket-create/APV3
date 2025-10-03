@@ -133,6 +133,49 @@ button:disabled,
   padding: 1rem 0;
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--fg-strong);
+}
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  transition: transform 260ms ease, filter 260ms ease;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-tagline {
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.brand:hover .brand-logo {
+  transform: rotate(-4deg) scale(1.05);
+  filter: drop-shadow(0 10px 18px rgba(70, 86, 227, 0.28));
+}
+
+.brand:hover .brand-tagline {
+  color: var(--primary);
+}
+
 .nav-links {
   display: flex;
   gap: 1.5rem;
@@ -160,8 +203,7 @@ button:disabled,
   background: transparent;
 }
 
-@media (max-width: 768px) {
-  .nav-links {
+  .brand-name {\n    font-size: 0.95rem;\n  }\n  .brand-tagline {\n    display: none;\n  }\n  .nav-links {
     position: fixed;
     inset: 0;
     backdrop-filter: blur(18px);
@@ -664,30 +706,9 @@ blockquote {
 }
 
 .svg-logo {
-  width: 140px;
+  width: 48px;
   height: auto;
   display: block;
-}
-
-.svg-logo path {
-  stroke-dasharray: 340;
-  stroke-dashoffset: 340;
-  animation: logo-draw 1.8s ease forwards, logo-shimmer 4.8s ease-in-out infinite;
-}
-
-@keyframes logo-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes logo-shimmer {
-  0%, 100% {
-    filter: drop-shadow(0 0 0 rgba(124, 139, 255, 0.5));
-  }
-  50% {
-    filter: drop-shadow(0 0 12px rgba(124, 139, 255, 0.85));
-  }
 }
 
 .badge.small {

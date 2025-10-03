@@ -1,4 +1,4 @@
-﻿import { apiClient } from "./apiClient.js";
+import { apiClient } from "./apiClient.js";
 import { showToast } from "./ui/toast.js";
 import { initModalSystem } from "./ui/modal.js";
 import { initNotifications } from "./notifications.js";
@@ -53,15 +53,22 @@ const renderHeader = () => {
   const inner = document.createElement("div");
   inner.className = "inner";
 
-  const logoLink = document.createElement("a");
-  logoLink.href = "/index.html";
-  logoLink.className = "logo";
-  logoLink.innerHTML = `<img src="/assets/logo.svg" alt="A.production" width="140" height="40" />`;
+  const brandLink = document.createElement("a");
+  brandLink.href = "/index.html";
+  brandLink.className = "brand";
+  brandLink.innerHTML = `
+    <img class="brand-logo" src="/assets/logo.svg" alt="A.production monogram" width="48" height="48" />
+    <div class="brand-text">
+      <span class="brand-name">A.production</span>
+      <span class="brand-tagline">(of sorts)</span>
+    </div>
+  `;
 
   const nav = document.createElement("nav");
   nav.className = "nav-links";
 
   createNavLinks(routes, nav);
+
 
   if (state.user) {
     const divider = document.createElement("span");
@@ -101,21 +108,21 @@ const renderHeader = () => {
     bell.className = "notification-bell";
     bell.type = "button";
     bell.dataset.notificationBell = "";
-    bell.innerHTML = "<span>??</span>";
+    bell.innerHTML = '<span aria-hidden="true">Ã°Å¸â€â€</span>';
     actions.append(bell);
   }
 
   const burger = document.createElement("button");
   burger.className = "burger";
   burger.setAttribute("aria-label", "Toggle navigation");
-  burger.innerHTML = "<span>?</span>";
+  burger.innerHTML = '<span aria-hidden="true">Ã¢ËœÂ°</span>';
 
   burger.addEventListener("click", () => {
     nav.classList.toggle("open");
   });
 
   actions.append(burger);
-  inner.append(logoLink, nav, actions);
+  inner.append(brandLink, nav, actions);
   header.append(inner);
 };
 
@@ -126,14 +133,14 @@ const renderFooter = () => {
     <div class="inner">
       <div>
         <strong>A.production</strong>
-        <p class="muted">Premium templates, conversion services, and growth coaching for ambitious builders.</p>
+        <p class="muted">Stories crafted in code &mdash; digital products, services, and coaching designed to move ideas forward.</p>
       </div>
       <div class="list-inline">
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
         <a href="/sitemap.xml">Sitemap</a>
       </div>
-      <small>© ${new Date().getFullYear()} A.production. All rights reserved.</small>
+      <small>&copy; ${new Date().getFullYear()} A.production. All rights reserved.</small>
     </div>
   `;
 };

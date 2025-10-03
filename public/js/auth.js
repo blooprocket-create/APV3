@@ -20,6 +20,7 @@ const bindSignIn = () => {
       showToast({ message: "Welcome back!", variant: "success" });
       redirect("/account/index.html");
     } catch (error) {
+      console.error("Sign in failed", error);
       showToast({ message: error.message || "Unable to sign in", variant: "error" });
     }
   });
@@ -41,6 +42,7 @@ const bindSignUp = () => {
       showToast({ message: "Account created!", variant: "success" });
       redirect("/account/index.html");
     } catch (error) {
+      console.error("Sign up failed", error);
       showToast({ message: error.message || "Unable to sign up", variant: "error" });
     }
   });

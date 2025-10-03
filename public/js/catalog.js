@@ -98,7 +98,8 @@ const renderProductDetail = async () => {
     return;
   }
   try {
-    const data = await apiClient.get(`/products/${slug}`);
+    const cleanSlug = slug.trim();
+    const data = await apiClient.get(`/product-${cleanSlug}`);
     const product = data.product;
     container.innerHTML = `
       <section class="card">
@@ -126,7 +127,8 @@ const renderServiceDetail = async () => {
     return;
   }
   try {
-    const data = await apiClient.get(`/services/${slug}`);
+    const cleanSlug = slug.trim();
+    const data = await apiClient.get(`/service-${cleanSlug}`);
     const service = data.service;
     container.innerHTML = `
       <section class="card">
