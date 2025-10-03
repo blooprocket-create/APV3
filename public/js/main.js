@@ -1,4 +1,4 @@
-import { apiClient } from "./apiClient.js";
+﻿import { apiClient } from "./apiClient.js";
 import { showToast } from "./ui/toast.js";
 import { initModalSystem } from "./ui/modal.js";
 import { initNotifications } from "./notifications.js";
@@ -56,7 +56,7 @@ const renderHeader = () => {
   const logoLink = document.createElement("a");
   logoLink.href = "/index.html";
   logoLink.className = "logo";
-  logoLink.innerHTML = `<img src="/assets/logo.svg" alt="Studio Nova" width="140" height="40" />`;
+  logoLink.innerHTML = `<img src="/assets/logo.svg" alt="A.production" width="140" height="40" />`;
 
   const nav = document.createElement("nav");
   nav.className = "nav-links";
@@ -125,7 +125,7 @@ const renderFooter = () => {
   footer.innerHTML = `
     <div class="inner">
       <div>
-        <strong>Studio Nova</strong>
+        <strong>A.production</strong>
         <p class="muted">Premium templates, conversion services, and growth coaching for ambitious builders.</p>
       </div>
       <div class="list-inline">
@@ -133,7 +133,7 @@ const renderFooter = () => {
         <a href="/terms.html">Terms</a>
         <a href="/sitemap.xml">Sitemap</a>
       </div>
-      <small>� ${new Date().getFullYear()} Studio Nova. All rights reserved.</small>
+      <small>© ${new Date().getFullYear()} A.production. All rights reserved.</small>
     </div>
   `;
 };
@@ -185,3 +185,4 @@ const init = async () => {
 };
 
 init();
+

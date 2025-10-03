@@ -7,6 +7,7 @@ import { query } from "./db";
 
 const TOKEN_COOKIE = "session";
 const TOKEN_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
+const isProd = !!process.env.VERCEL || process.env.NODE_ENV === "production";
 
 const jwtSecret = process.env.JWT_SECRET;
 if (!jwtSecret) {
@@ -46,7 +47,7 @@ export const setAuthCookie = (res: VercelResponse, token: string) => {
     "Set-Cookie",
     cookie.serialize(TOKEN_COOKIE, token, {
       httpOnly: true,
-      secure: true,
+      secure: isProd,
       sameSite: "lax",
       maxAge: TOKEN_MAX_AGE,
       path: "/"
@@ -59,7 +60,7 @@ export const clearAuthCookie = (res: VercelResponse) => {
     "Set-Cookie",
     cookie.serialize(TOKEN_COOKIE, "", {
       httpOnly: true,
-      secure: true,
+      secure: isProd,
       sameSite: "lax",
       maxAge: 0,
       path: "/"

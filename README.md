@@ -1,6 +1,6 @@
-# Studio Nova ó Framework-free E-commerce MVP
+Ôªø# A.production ‚Äî Framework-free E-commerce MVP
 
-Studio Nova is a vanilla HTML/CSS/JavaScript storefront backed by Vercel serverless functions and a Neon (Postgres) database. It ships email/password auth (JWT via HttpOnly cookies), digital product purchases with mock payments, a full service-request workflow (quotes, messaging, deliverables), and an admin control panel ñ all without client-side frameworks or ORMs.
+A.production is a vanilla HTML/CSS/JavaScript storefront backed by Vercel serverless functions and a Neon (Postgres) database. It ships email/password auth (JWT via HttpOnly cookies), digital product purchases with mock payments, a full service-request workflow (quotes, messaging, deliverables), and an admin control panel ‚Äì all without client-side frameworks or ORMs.
 
 ## Highlights
 
@@ -69,9 +69,9 @@ Run the migration and seed scripts (via the Neon SQL editor or `psql`):
 
 This seeds:
 
-- Admin ó `admin@example.com / Admin123!`
-- Editor ó `editor@example.com / Editor123!`
-- Customers ó `customer1@example.com`, `customer2@example.com` (`Customer123!`)
+- Admin ‚Äî `admin@example.com / Admin123!`
+- Editor ‚Äî `editor@example.com / Editor123!`
+- Customers ‚Äî `customer1@example.com`, `customer2@example.com` (`Customer123!`)
 - Sample products, services, requests, messages, and a sent quote
 
 ### 4. Local development
@@ -93,7 +93,7 @@ Vercel will serve static assets from `/public` and compile the TypeScript API ro
 ## Key Workflows to Test
 
 1. **Auth:** Sign up a new account, sign out, then sign back in. `/api/auth/me` should return the session.
-2. **Digital purchase:** From a product detail page, click ìBuy (Mock)î ? order is created, mock payment marks it paid, and the order appears in `account/order.html`.
+2. **Digital purchase:** From a product detail page, click ‚ÄúBuy (Mock)‚Äù ? order is created, mock payment marks it paid, and the order appears in `account/order.html`.
 3. **Service request:** Submit a new request. In `/admin/requests.html` create/send a quote, accept it as the customer, trigger the mock payment, upload deliverables, and confirm they appear in the customer account.
 4. **Admin CRUD:** Create/edit/delete users, products, and services from their respective admin pages.
 5. **Notifications:** Watch the bell indicator update after quotes, messages, or deliverables are created.
@@ -115,8 +115,9 @@ Vercel will serve static assets from `/public` and compile the TypeScript API ro
 
 ## Scripts
 
-- `npm run dev` ó alias for `vercel dev`
-- `npm run start` ó same as `vercel dev`
-- `npm run lint` ó placeholder (no linter configured)
+- `npm run dev` ‚Äî alias for `vercel dev`
+- `npm run start` ‚Äî same as `vercel dev`
+- `npm run lint` ‚Äî placeholder (no linter configured)
 
 Feel free to extend scripts with formatting, linting, or test commands as you evolve the project.
+

@@ -34,9 +34,9 @@ WITH inserted_users AS (
     (SELECT id FROM inserted_services WHERE slug = 'brand-refresh') AS brand_service
 ), inserted_requests AS (
   INSERT INTO service_requests (user_id, service_id, status, brief)
-  SELECT customer1, conversion_service, 'quoted', '{"goals": "Refresh landing page copy", "audience": "B2B SaaS"}'::jsonb FROM req_data
+  SELECT customer1, conversion_service, 'quoted'::service_request_status, '{"goals": "Refresh landing page copy", "audience": "B2B SaaS"}'::jsonb FROM req_data
   UNION ALL
-  SELECT customer2, brand_service, 'in_progress', '{"goals": "Modernize brand palette", "deliverables": "Logo update"}'::jsonb FROM req_data
+  SELECT customer2, brand_service, 'in_progress'::service_request_status, '{"goals": "Modernize brand palette", "deliverables": "Logo update"}'::jsonb FROM req_data
   RETURNING id, user_id, service_id, status, created_at
 ), inserted_messages AS (
   INSERT INTO messages (service_request_id, sender_user_id, body)
@@ -47,7 +47,7 @@ WITH inserted_users AS (
   RETURNING id, service_request_id
 ), inserted_quote AS (
   INSERT INTO quotes (service_request_id, amount_cents, notes, status)
-  SELECT (SELECT id FROM inserted_requests ORDER BY created_at ASC LIMIT 1), 21000, 'Includes CRO research and 5 landing sections.', 'sent'
+  SELECT (SELECT id FROM inserted_requests ORDER BY created_at ASC LIMIT 1), 21000, 'Includes CRO research and 5 landing sections.', 'sent'::quote_status
   RETURNING id
 )
 INSERT INTO notifications (user_id, type, title, body, meta)
@@ -66,7 +66,7 @@ WITH u AS (
   SELECT id, title, price_cents FROM products WHERE slug = 'brand-style-guide'
 ), inserted_order AS (
   INSERT INTO orders (user_id, status, total_cents, type)
-  SELECT user_id, 'paid', price_cents, 'digital' FROM u, prod LIMIT 1
+  SELECT user_id, 'paid'::order_status, price_cents, 'digital'::order_type FROM u, prod LIMIT 1
   RETURNING id, user_id
 )
 INSERT INTO order_items (order_id, product_id, title, unit_price_cents, quantity, subtotal_cents)

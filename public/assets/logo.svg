@@ -1,6 +1,6 @@
 <svg class="svg-logo" width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <title>A.production — animated wordmark</title>
-  <desc>Animated logo for A.production with a luminous A monogram and tagline Stories in Motion.</desc>
+  <desc>Animated logo for A.production with a luminous A monogram and the tagline “(of sorts)”.</desc>
   <defs>
     <linearGradient id="grad-stroke" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#7C8BFF">
@@ -76,5 +76,5 @@
   </g>
 
   <text class="wordmark" x="100" y="40">A.production</text>
-  <text class="tagline" x="100" y="58">Stories in Motion</text>
+  <text class="tagline" x="100" y="58">(of sorts)</text>
 </svg>
