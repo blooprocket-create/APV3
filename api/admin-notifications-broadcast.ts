@@ -29,7 +29,7 @@ export default asyncHandler(async (req: VercelRequest, res: VercelResponse) => {
 
   const values: unknown[] = [];
   const placeholders: string[] = [];
-  targets.rows.forEach((row, index) => {
+  targets.rows.forEach((row: { id: string }, index: number) => {
     const base = index * 5;
     placeholders.push(`($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}::jsonb)`);
     values.push(row.id, "broadcast", title, messageBody, JSON.stringify({ role: role ?? "all" }));

@@ -108,14 +108,14 @@ const renderHeader = () => {
     bell.className = "notification-bell";
     bell.type = "button";
     bell.dataset.notificationBell = "";
-    bell.innerHTML = '<span aria-hidden="true">Ã°Å¸â€â€</span>';
+    bell.innerHTML = '<span aria-hidden="true">&#128276;</span>';
     actions.append(bell);
   }
 
   const burger = document.createElement("button");
   burger.className = "burger";
   burger.setAttribute("aria-label", "Toggle navigation");
-  burger.innerHTML = '<span aria-hidden="true">Ã¢ËœÂ°</span>';
+  burger.innerHTML = '<span aria-hidden="true">&#9776;</span>';
 
   burger.addEventListener("click", () => {
     nav.classList.toggle("open");

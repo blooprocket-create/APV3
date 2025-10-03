@@ -1,64 +1,67 @@
-<svg class="svg-logo" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="svg-logo" width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
   <title>A.production emblem</title>
-  <desc>Animated emblem suggesting motion and production.</desc>
+  <desc>Animated emblem suggesting cinematic motion and crafted production.</desc>
   <defs>
-    <radialGradient id="orb-glow" cx="0.5" cy="0.5" r="0.55">
-      <stop offset="0%" stop-color="#1E293B" stop-opacity="0" />
-      <stop offset="60%" stop-color="#1E293B" stop-opacity="0.3" />
-      <stop offset="100%" stop-color="#0F172A" stop-opacity="0" />
+    <linearGradient id="frame-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6d9a4" />
+      <stop offset="100%" stop-color="#8fb6ff" />
+    </linearGradient>
+    <radialGradient id="core-glow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="#8fb6ff" stop-opacity="0.8" />
+      <stop offset="70%" stop-color="#8fb6ff" stop-opacity="0" />
     </radialGradient>
-    <linearGradient id="ring-gradient" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#8B5CF6">
-        <animate attributeName="offset" values="0;0.3;0" dur="5s" repeatCount="indefinite" />
-      </stop>
-      <stop offset="100%" stop-color="#38BDF8" />
-    </linearGradient>
-    <linearGradient id="wave-gradient" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#10B981" stop-opacity="0.2" />
-    </linearGradient>
     <style>
-      .halo { fill: url(#orb-glow); opacity: 0; animation: fadeIn 1s ease forwards; }
-      .ring {
-        stroke: url(#ring-gradient);
-        stroke-width: 4.5;
+      .frame {
+        stroke: url(#frame-gradient);
+        stroke-width: 3.6;
         stroke-linecap: round;
         fill: none;
-        stroke-dasharray: 210;
-        stroke-dashoffset: 210;
-        animation: draw 1.4s ease forwards;
-        filter: drop-shadow(0 6px 18px rgba(56, 189, 248, 0.35));
+        stroke-dasharray: 180;
+        stroke-dashoffset: 180;
+        animation: draw 1.6s ease forwards;
+        filter: drop-shadow(0 8px 24px rgba(12, 16, 36, 0.45));
       }
-      .wave {
-        stroke: url(#wave-gradient);
+      .shutter {
+        stroke: url(#frame-gradient);
         stroke-width: 3;
         fill: none;
         stroke-linecap: round;
+        stroke-dasharray: 120;
+        stroke-dashoffset: 120;
+        animation: draw 1.1s ease forwards 0.3s;
+      }
+      .sparkle {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.8);
+        stroke-width: 2;
+        stroke-linecap: round;
         opacity: 0;
-        animation: wave 2.8s ease-in-out infinite 0.9s;
+        animation: sparkle 3.2s ease-in-out infinite 1.2s;
       }
-      .orb {
-        fill: #38BDF8;
-        filter: drop-shadow(0 0 12px rgba(8, 145, 178, 0.6));
+      .core {
+        fill: url(#core-glow);
+        opacity: 0;
+        animation: coreFade 1.4s ease forwards 0.6s;
       }
-      @keyframes draw { to { stroke-dashoffset: 0; } }
-      @keyframes fadeIn { to { opacity: 1; } }
-      @keyframes wave {
-        0%, 100% { opacity: 0; stroke-dashoffset: 40; }
-        40% { opacity: 1; stroke-dashoffset: 0; }
-        60% { opacity: 0; stroke-dashoffset: -40; }
+      @keyframes draw {
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes sparkle {
+        0%, 100% { opacity: 0; transform: scale(0.85); }
+        35% { opacity: 1; transform: scale(1); }
+        60% { opacity: 0; transform: scale(1.2); }
+      }
+      @keyframes coreFade {
+        to { opacity: 1; }
       }
     </style>
   </defs>
 
-  <g transform="translate(32 32)">
-    <circle class="halo" cx="0" cy="0" r="28" />
-    <circle class="ring" r="22" />
-    <path class="wave" d="M-16 -2 Q -8 6 0 -2 T 16 -2" />
-    <g>
-      <circle class="orb" r="4" transform="translate(0 -22)">
-        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="5s" repeatCount="indefinite" />
-      </circle>
-    </g>
+  <g transform="translate(36 36)">
+    <path class="frame" d="M0 -24 L18 -12 L18 12 L0 24 L-18 12 L-18 -12 Z" />
+    <path class="shutter" d="M-10 -6 L0 -18 L10 -6 L0 6 Z" />
+    <circle class="core" r="8" />
+    <path class="sparkle" d="M-14 0 H14" />
+    <path class="sparkle" d="M0 -14 V14" />
   </g>
 </svg>
