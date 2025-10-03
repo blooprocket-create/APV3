@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/api/products/:slug", "destination": "/api/product-:slug" },
+    { "source": "/api/services/:slug", "destination": "/api/service-:slug" },
+    { "source": "/api/requests/:id", "destination": "/api/request-:id" },
+    { "source": "/api/requests/:id/messages", "destination": "/api/request-:id-messages" },
+    { "source": "/api/requests/:id/quote", "destination": "/api/request-:id-quote" },
+    { "source": "/api/quotes/:id/accept", "destination": "/api/quotes-:id-accept" },
+    { "source": "/api/quotes/:id/decline", "destination": "/api/quotes-:id-decline" },
+    { "source": "/api/requests/:id/deliverables", "destination": "/api/request-:id-deliverables" },
+    { "source": "/api/requests/:id/status", "destination": "/api/request-:id-status" },
+    { "source": "/api/admin/users/:id", "destination": "/api/admin-user-:id" },
+    { "source": "/api/admin/products/:id", "destination": "/api/admin-product-:id" },
+    { "source": "/api/admin/services/:id", "destination": "/api/admin-service-:id" }
+  ]
+}
