@@ -98,7 +98,7 @@ const renderProductDetail = async () => {
     return;
   }
   try {
-    const data = await apiClient.get(`/product-${encodeURIComponent(slug)}`);
+    const data = await apiClient.get(`/products/${encodeURIComponent(slug)}`);
     const product = data.product;
     container.innerHTML = `
       <section class="card article-card">
@@ -126,7 +126,7 @@ const renderServiceDetail = async () => {
     return;
   }
   try {
-    const data = await apiClient.get(`/service-${encodeURIComponent(slug)}`);
+    const data = await apiClient.get(`/services/${encodeURIComponent(slug)}`);
     const service = data.service;
     container.innerHTML = `
       <section class="card article-card">

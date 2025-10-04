@@ -1,102 +1,79 @@
 import { apiClient } from "./apiClient.js";
-import { showToast } from "./ui/toast.js";
-import { initModalSystem } from "./ui/modal.js";
-import { initNotifications } from "./notifications.js";
 
-const state = {
-  user: null,
-  notifications: []
-};
-
-const routes = [
-  { href: "/index.html", label: "Home" },
-  { href: "/products.html", label: "Products" },
-  { href: "/services.html", label: "Services" },
-  { href: "/coaching.html", label: "Coaching" }
-];
-
-const accountLinks = [
-  { href: "/account/index.html", label: "Account" },
-  { href: "/account/requests.html", label: "Requests" }
-];
-
-const adminLinks = [
-  { href: "/admin/index.html", label: "Dashboard" },
-  { href: "/admin/users.html", label: "Users" },
-  { href: "/admin/products.html", label: "Products" },
-  { href: "/admin/services.html", label: "Services" },
-  { href: "/admin/requests.html", label: "Requests" }
-];
-
-const pathMatches = (href) => {
-  const url = new URL(href, window.location.origin);
-  return window.location.pathname.endsWith(url.pathname);
-};
-
-const createNavLinks = (links, container) => {
-  links.forEach((link) => {
-    const anchor = document.createElement("a");
-    anchor.href = link.href;
-    anchor.textContent = link.label;
-    if (pathMatches(link.href)) {
-      anchor.classList.add("active");
-    }
-    container.append(anchor);
-  });
-};
-
-const renderHeader = () => {
-  const header = document.querySelector("header[data-site-header]");
-  if (!header) return;
-
-  header.innerHTML = "";
-  const inner = document.createElement("div");
-  inner.className = "inner";
-
-  const brandLink = document.createElement("a");
-  brandLink.href = "/index.html";
-  brandLink.className = "brand";
-  brandLink.innerHTML = `
-    <img class="brand-logo" src="/assets/logo.svg" alt="A.production monogram" width="56" height="56" />
-    <div class="brand-text">
-      <span class="brand-name">A.production</span>
-      <span class="brand-tagline">(of sorts)</span>
-    </div>
-  `;
-
-  const nav = document.createElement("nav");
+  const nav = document.createElement("div");
   nav.className = "nav-links";
 
-  createNavLinks(routes, nav);
+  const primaryGroup = document.createElement("div");
+  primaryGroup.className = "nav-group nav-group--primary";
+  createNavLinks(routes, primaryGroup);
 
-  if (state.user) {
-    const divider = document.createElement("span");
-    divider.className = "badge small";
-    divider.textContent = state.user.role.toUpperCase();
-    nav.append(divider);
-
-    createNavLinks(accountLinks, nav);
-
-    if (state.user.role === "admin" || state.user.role === "editor") {
-      createNavLinks(adminLinks, nav);
-    }
-
-    const signOut = document.createElement("a");
-    signOut.href = "/auth/sign-out.html";
-    signOut.textContent = "Sign out";
-    nav.append(signOut);
-  } else {
-    const signUp = document.createElement("a");
-    signUp.href = "/auth/sign-up.html";
-    signUp.textContent = "Create account";
-    nav.append(signUp);
-
-    const signIn = document.createElement("a");
-    signIn.href = "/auth/sign-in.html";
-    signIn.textContent = "Sign in";
-    nav.append(signIn);
+  if (state.user && (state.user.role === "admin" || state.user.role === "editor")) {
+    const adminAnchor = document.createElement("a");
+    adminAnchor.href = "/admin/index.html";
+    adminAnchor.textContent = "Admin";
+    primaryGroup.append(adminAnchor);
   }
 
+  const utilityGroup = document.createElement("div");
+  utilityGroup.className = "nav-group nav-group--secondary";
+
+  if (state.user) {
+    createNavLinks(accountLinks, utilityGroup);
+    const signOutLink = document.createElement("a");
+    signOutLink.href = "/auth/sign-out.html";
+    signOutLink.textContent = "Sign out";
+    utilityGroup.append(signOutLink);
+  } else {
+    const createLink = document.createElement("a");
+    createLink.href = "/auth/sign-up.html";
+    createLink.textContent = "Create account";
+    utilityGroup.append(createLink);
+    const signInLink = document.createElement("a");
+    signInLink.href = "/auth/sign-in.html";
+    signInLink.textContent = "Sign in";
+    utilityGroup.append(signInLink);
+  }
+
+  nav.append(primaryGroup);
+  nav.append(utilityGroup);
+import { apiClient } from "./apiClient.js";
+
+  const nav = document.createElement("div");
+  nav.className = "nav-links";
+
+  const primaryGroup = document.createElement("div");
+  primaryGroup.className = "nav-group nav-group--primary";
+  createNavLinks(routes, primaryGroup);
+
+  if (state.user && (state.user.role === "admin" || state.user.role === "editor")) {
+    const adminAnchor = document.createElement("a");
+    adminAnchor.href = "/admin/index.html";
+    adminAnchor.textContent = "Admin";
+    primaryGroup.append(adminAnchor);
+  }
+
+  const utilityGroup = document.createElement("div");
+  utilityGroup.className = "nav-group nav-group--secondary";
+
+  if (state.user) {
+    createNavLinks(accountLinks, utilityGroup);
+    const signOutLink = document.createElement("a");
+    signOutLink.href = "/auth/sign-out.html";
+    signOutLink.textContent = "Sign out";
+    utilityGroup.append(signOutLink);
+  } else {
+    const createLink = document.createElement("a");
+    createLink.href = "/auth/sign-up.html";
+    createLink.textContent = "Create account";
+    utilityGroup.append(createLink);
+    const signInLink = document.createElement("a");
+    signInLink.href = "/auth/sign-in.html";
+    signInLink.textContent = "Sign in";
+    utilityGroup.append(signInLink);
+  }
+
+  nav.append(primaryGroup);
+  nav.append(utilityGroup);
   const actions = document.createElement("div");
   actions.style.display = "flex";
   actions.style.gap = "0.75rem";
@@ -163,7 +140,7 @@ const renderFooter = () => {
       </div>
       <div class="footer-cta">
         <strong>Ready to build?</strong>
-        <p>Start a request and weÃ¢â‚¬â„¢ll reply within 24 hours.</p>
+        <p>Start a request and weÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ll reply within 24 hours.</p>
         <a class="button button--small" href="/auth/sign-up.html">Create account</a>
       </div>
     </div>
